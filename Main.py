@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+import seaborn as sns
 
 # Özellikler
 features = ["acousticness", "danceability", "duration_ms", "energy", "instrumentalness", "speechiness", "valence"]
@@ -9,7 +10,11 @@ features = ["acousticness", "danceability", "duration_ms", "energy", "instrument
 # Veri yükleme
 dataframe = pd.read_csv('Source/dataset.csv')
 
+sns.distplot(dataframe['popularity']).set_title('Popularity Distribution')
+
 # Popülerlik sınıflandırması
+
+#esik değeri
 dataframe['popularity'] = dataframe['popularity'].apply(lambda x: 1 if x > 57 else 0)
 
 # X ve y ayırma
